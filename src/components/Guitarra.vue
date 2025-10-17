@@ -1,10 +1,18 @@
 <script setup>
+
+import { ref } from 'vue'
+
+const numero = ref(0)
+
     const props = defineProps({
         guitarra: {
             type: Object, 
             required: true
         }
     })
+
+    defineEmits(['agregar-carrito'])
+  
 </script>
 
 
@@ -18,11 +26,13 @@
                 </div>
                 <div class="col-8">
                     <h3 class="text-black fs-4 fw-bold text-uppercase">{{ guitarra.nombre }}</h3>
+                    <p>{{ numero }}</p>
                     <p>{{ guitarra.descripcion }}</p>
                     <p class="fw-black text-primary fs-3">$299</p>
                     <button 
                         type="button"
-                        class="btn btn-dark w-100 "
+                        class="btn btn-dark w-100"
+                        v-on:click="$emit('agregar-carrito', guitarra)"
                     >Agregar al Carrito</button>
                 </div>
             </div><!-- FIN GUITARRA -->
